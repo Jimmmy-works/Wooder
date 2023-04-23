@@ -1,0 +1,287 @@
+.hamberger {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+  @include transition;
+  @include mid;
+  display: none;
+  &.active {
+    .hamberger {
+      &__item {
+        @include transform(translate(-70%, 0));
+        background-color: transparent;
+        box-shadow: none;
+        &::before {
+          @include transform(rotate(45deg) translate(14px, -14px));
+          background-color: var(--cl-primary);
+        }
+        &::after {
+          @include transform(rotate(-45deg) translate(14px, 14px));
+          background-color: var(--cl-primary);
+        }
+      }
+    }
+  }
+  &__item {
+    width: 28px;
+    height: 3px;
+    position: absolute;
+    background-color: var(--cl-white);
+    box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+    border-radius: 5px;
+    @include transition;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 3px;
+      background-color: var(--cl-white);
+      box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+      @include transition;
+      border-radius: 5px;
+    }
+    &::before {
+      @include transform(translateY(-8px));
+    }
+    &::after {
+      @include transform(translateY(8px));
+    }
+  }
+}
+
+.textbox {
+  &__hero {
+    width: 100%;
+    @include mid(false);
+    &-heading {
+      text-align: center;
+      width: 100%;
+      @include text(
+        pb,
+        var(--fz-h1),
+        var(--lh-h1),
+        var(--cl-primary),
+        none,
+        uppercase
+      );
+      letter-spacing: var(--ls-200);
+    }
+    &-desc {
+      --lh-h3: 22px;
+      @include text(
+        pr,
+        var(--fz-h3),
+        var(--lh-h3),
+        var(--cl-white),
+        none,
+        none
+      );
+      letter-spacing: var(--ls-25);
+    }
+    .btn__main {
+      display: block;
+      text-decoration: none;
+      &-wrap {
+        margin: 35px auto 0;
+        height: 50px;
+        max-width: 250px;
+        border: 2px solid var(--cl-white);
+        @include mid;
+        overflow: hidden;
+        background-color: transparent;
+        transition: border 0.4s, background-color 0.4s;
+        &:hover {
+          border: 2px solid rgba(190, 166, 124, 0.1);
+          background-color: rgba(190, 166, 124, 0.5);
+          .text {
+            color: var(--cl-black);
+          }
+          .img {
+            img {
+              &:first-child {
+                @include visible(0);
+              }
+              &:last-child {
+                @include visible(1);
+              }
+            }
+          }
+        }
+        .img {
+          position: relative;
+          margin-left: 18px;
+          @include transition;
+          img {
+            @include transition;
+            object-fit: none;
+            &:last-child {
+              @include mid(false);
+              @include transition;
+              @include visible(0);
+            }
+          }
+        }
+        .text {
+          display: block;
+          @include transition;
+          @include text(
+            pb,
+            var(--fz-h4),
+            var(--lh-h4),
+            var(--cl-white),
+            none,
+            uppercase
+          );
+          letter-spacing: var(--ls-200);
+        }
+      }
+    }
+  }
+  &__section {
+    --lh-h3: 22px;
+    &.center {
+      text-align: center;
+      @include mid;
+      flex-direction: column;
+      .textbox__section {
+        &-heading {
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+    &-heading {
+      @include text(
+        pb,
+        var(--fz-h2),
+        var(--lh-h2),
+        var(--cl-heading-h3),
+        none,
+        uppercase
+      );
+      letter-spacing: var(--ls-70);
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: -96px;
+        height: 1px;
+        width: 76px;
+        background-color: var(--cl-grey);
+      }
+    }
+    &-desc {
+      max-width: 286px;
+      @include text(pr, var(--fz-h3), var(--lh-h3), var(--cl-grey), none, none);
+      letter-spacing: var(--ls-25);
+      word-break: break-all;
+      @include threedots(3);
+    }
+    @include xxs {
+      &-heading {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.btn {
+  &__section {
+    text-decoration: none;
+    margin-top: 15px;
+    @include mid;
+    justify-content: flex-start;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      background-color: var(--cl-primary);
+      height: 1.5px;
+      width: 37px;
+    }
+    &:hover {
+      span {
+        color: var(--cl-primary);
+      }
+      img {
+        transform: translateX(30px);
+        @include visible(0);
+      }
+    }
+    img {
+      @include transition;
+      margin-left: 10px;
+      transform: translateX(0px);
+      @include visible(1);
+    }
+    span {
+      @include transition;
+      @include text(
+        pb,
+        var(--fz-h4),
+        var(--lh-h4),
+        var(--cl-black),
+        none,
+        uppercase
+      );
+      letter-spacing: var(--ls-200);
+    }
+  }
+}
+.line {
+  display: block;
+  margin: 0 auto;
+  height: 3px;
+  width: 38px;
+  background-color: var(--cl-primary);
+}
+.tabs {
+  margin-bottom: 30px;
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    --fz-h3: 1.8rem;
+    --lh-h3: 3rem;
+    &-item {
+      display: block;
+      background-color: #bfbfbf;
+      padding: 5px 20px;
+      text-decoration: none;
+      @include transition;
+      cursor: pointer;
+      &.active {
+        background-color: var(--cl-primary);
+        .text {
+          color: var(--cl-white);
+        }
+      }
+      &:hover {
+        background-color: var(--cl-primary);
+        .text {
+          color: var(--cl-white);
+        }
+      }
+      .text {
+        @include text(
+          pr,
+          var(--fz-h3),
+          var(--lh-h3),
+          var(--cl-black),
+          none,
+          Capitalize
+        );
+        @include transition;
+      }
+    }
+  }
+}

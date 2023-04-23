@@ -1,0 +1,21 @@
+// Core var and mixins
+@import "./core/reset";
+@import "./core/variables";
+@import "./core/mixins";
+
+// main, component, element, loading
+@import "./core/layout";
+@import "./core/components";
+@import "./core/elements";
+@import "./core/loading";
+
+//  Nav , header, footer
+@import "./core/header";
+@import "./core/nav";
+@import "./core/footer";
+// Pages
+@import "./pages/home";
+
+//SCSS libs
+@import "./core/libs/fancyBox";
+@import "./core/libs/flickity";
