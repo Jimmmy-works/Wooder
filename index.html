@@ -55,11 +55,18 @@
       -moz-transition: 0.4s;
       -ms-transition: 0.4s;
       -o-transition: 0.4s;
+      transition-delay: 0.9s;
     }
 
     .loader-mask.active {
       opacity: 0;
       pointer-events: none;
+      transition: 0.4s;
+      -webkit-transition: 0.4s;
+      -moz-transition: 0.4s;
+      -ms-transition: 0.4s;
+      -o-transition: 0.4s;
+      transition-delay: 0.5s;
     }
   </style>
 </head>
@@ -75,12 +82,12 @@
   <div class="processbar"></div>
   <nav class="nav">
     <div class="nav__inner">
-      <ul class="nav__inner-menu">
-        <li class="item"><a href="#hero">HOME</a></li>
-        <li class="item"><a href="#service">PRODUCTS</a></li>
-        <li class="item"><a href="#quality">QUALITY</a></li>
-        <li class="item"><a href="#gallery">GALLERY</a></li>
-        <li class="item"><a href="#news">NEWS</a></li>
+      <ul class="nav__inner-menu animate-nav">
+        <li class=" item"><a class="animate-nav" href="#hero">HOME</a></li>
+        <li class=" item"><a class="animate-nav" href="#service">PRODUCTS</a></li>
+        <li class=" item"><a class="animate-nav" href="#quality">QUALITY</a></li>
+        <li class=" item"><a class="animate-nav" href="#gallery">GALLERY</a></li>
+        <li class=" item"><a class="animate-nav" href="#news">NEWS</a></li>
       </ul>
     </div>
   </nav>

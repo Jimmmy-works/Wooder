@@ -39,7 +39,7 @@
             none,
             none
           );
-          @include transition;
+          transition: color 0.4s;
         }
         &:hover {
           a {

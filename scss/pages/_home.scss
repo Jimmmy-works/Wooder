@@ -374,6 +374,7 @@
     }
     &-item {
       &.is-selected {
+        filter: blur(0);
         .thumbnails__video {
           filter: brightness(100%);
           border: 1px solid var(--cl-primary);
@@ -437,6 +438,7 @@
       &-item {
         margin-right: 24px;
         width: 60%;
+        filter: blur(2px);
       }
     }
   }
@@ -1012,7 +1014,6 @@
     cursor: pointer;
   }
 }
-
 .processbar {
   width: 0%;
   height: 3px;
@@ -1022,5 +1023,43 @@
   z-index: 1100;
   background: var(--cl-primary);
 }
+.loader {
+  @include mid;
+  @include mid(flex);
+  flex-direction: column;
+  &__progress {
+    width: 240px;
+    height: 2px;
+    position: relative;
+    margin: 30px 0 26px 0;
+    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    span {
+      width: 0%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      background: var(--cl-primary);
+      @include transition;
+    }
+  }
+  &__number {
+    text-align: center;
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: 700;
+    color: var(--cl-primary);
+    @include transition;
+  }
+  @include xs {
+    top: 45%;
 
+    &__progress {
+      width: 200px;
+      margin: 25px 0 22px 0;
+    }
+  }
+}
 @include custom-scrollbar();

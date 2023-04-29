@@ -17,19 +17,46 @@ function bgScroll() {
 }
 // bgScroll();
 
-
 // hamberger + nav
 const hamberger = document.querySelector('.hamberger');
 const nav = document.querySelector('.nav');
+const navActive = document.querySelector('.nav .active');
 let header = document.querySelector('.header')
 function handleHamberger(){
+    function gsapnav(){
+      gsap.registerPlugin(ScrollTrigger)
+      gsap.from(".animate-nav",{
+        duration: 0.3,
+        opacity:0,
+        y: 100,
+        stagger:0.15
+      })
+    }
+   
     hamberger.addEventListener('click',function(event){
         event.stopPropagation();
         hamberger.classList.toggle('active')
         nav.classList.toggle("active")
         header.classList.toggle('bg')
+       
+        if(nav.classList.contains("active") ){
+          gsap.registerPlugin(ScrollTrigger)
+          gsap.from(".animate-nav",{
+            duration: 0.3,
+            opacity:0,
+            y: 100,
+            stagger:0.15
+          })
+        }else{
+          let triggers = ScrollTrigger.getAll();
+          triggers.forEach( trigger => {			
+            trigger.kill();
+          });
+        }
     })
+   
 }
+
 handleHamberger();
 const heightWindow = window.innerHeight;
 document.addEventListener("click", function () {
@@ -72,9 +99,6 @@ function handleMenuNav() {
   });
 }
 handleMenuNav();
-
-
-
 
 // function clickNav() {
 //   backToTop.addEventListener("click", function () {
@@ -371,10 +395,18 @@ document.addEventListener("click", function () {
   popupvideo.classList.remove('active');
   iframe.setAttribute('src', " ")
 });
-
-
 function handleQualitySlider(){
   const qualityVideo = document.querySelector('.quality .quality__video');
+  var flktyQuality = new Flickity(qualityVideo, {
+    // options
+    cellAlign: 'left',
+    contain: true,
+    freeScroll: false,
+    wrapAround:false,
+    pageDots: false,
+    prevNextButtons: false,
+    imagesLoaded: true,
+  });
       window.addEventListener('resize', function(){
         widthWindow = window.innerWidth;
           if(widthWindow < 768){
@@ -388,13 +420,16 @@ function handleQualitySlider(){
             prevNextButtons: false,
             imagesLoaded: true,
           });
-        } else{
+        }
+        else{
           var flktyQuality = new Flickity(qualityVideo, {});
           flktyQuality.destroy();
         }
       })
 }
-handleQualitySlider();
+window.addEventListener('load',
+handleQualitySlider()
+)
 //handle gallery
 Fancybox.bind('[data-fancybox="gallery"]', {
     // Your custom options
@@ -456,7 +491,21 @@ function handleNews(){
 handleNews();
 // Handle News
 function handleNewsSlider(){
+  
   const newsList = document.querySelectorAll('.news .news__list');
+    newsList.forEach(list => {
+      var flktyNews = new Flickity(list, {
+        // options
+        cellAlign: 'left',
+        contain: true,
+        freeScroll: false,
+        lazyLoad: 4,
+        wrapAround:false,
+        pageDots: false,
+        prevNextButtons: false,  
+        imagesLoaded: true,
+      });
+    });
       window.addEventListener('resize', function(){
         widthWindow = window.innerWidth;
         newsList.forEach(list => {
@@ -472,7 +521,8 @@ function handleNewsSlider(){
             prevNextButtons: false,  
             imagesLoaded: true,
           });
-        } else{
+        }
+         else{
           var flktyNews = new Flickity( list, {
           });
           flktyNews.destroy();
@@ -557,7 +607,7 @@ function handleGallerySlider(){
         pauseAutoPlayOnHover: false,
         imagesLoaded: true,
         freeScroll: true,
-        adaptiveHeight: false,
+        adaptiveHeight: true,
 
       });
       window.addEventListener('resize',function(){
@@ -663,32 +713,9 @@ function gsapSection(){
     opacity:0,
     stagger:0.15,
   })
+  
 }
 gsapSection();
-
-//Loading
-// function loading() {
-//   let load = document.querySelector(".loader-mask");
-//   let loadedCnt = 0;
-//   let progressBar = document.querySelector(".loader__progress span");
-//   let progressNumber = document.querySelector(".loader__number span");
-//   let allImg = document.querySelectorAll("img").length;
-//   let imgLoad = imagesLoaded("img");
-
-//   imgLoad.on("progress", function (instance, image) {
-//     loadedCnt++;
-//     let n = Math.floor((instance.progressedCount / allImg) * 100); 
-//     // Cách 1
-//     // let n = Math.floor((loadedCnt / allImg) * 100); 
-//     //Cách 2
-//     progressNumber.innerHTML = n;
-//     progressBar.style.width = n + "%";
-//   });
-//   imgLoad.on("done", function () {
-//     load.classList.add("active");
-//   });
-// }
-// loading();
 function loading() {
   let load = document.querySelector(".loader-mask");
   let loadedCnt = 0;
@@ -698,26 +725,25 @@ function loading() {
   let imgLoad = imagesLoaded("img");
 
   // getting start
-function onAlways( instance ) {
-  console.log('all images are loaded');
-}
-// bind with .on()
-imgLoad.on( 'always', onAlways );
-imgLoad.on( 'progress', function( instance, image ) {
-    loadedCnt++;
-    // let n = Math.floor((instance.progressedCount / allImg) * 100); Cách 1
-    let n = Math.floor((loadedCnt / allImg) * 100); //Cách 2
-    progressNumber.innerHTML = n;
-    progressBar.style.width = n + "%";
-});
-imgLoad.on( 'done', function( instance ) {
-  console.log('DONE  - all images have been successfully loaded');
-  load.classList.add("active");
-});
-imgLoad.on( 'fail', function( instance ) {
-  console.log('FAIL - all images loaded, at least one is broken');
-});
-
+    function onAlways( instance ) {
+      console.log('all images are loaded');
+    }
+    // bind with .on()
+    imgLoad.on( 'always', onAlways );
+    imgLoad.on( 'progress', function( instance, image ) {
+        loadedCnt++;
+        // let n = Math.floor((instance.progressedCount / allImg) * 100); Cách 1
+        let n = Math.floor((loadedCnt / allImg) * 100); //Cách 2
+        progressNumber.innerHTML = n;
+        progressBar.style.width = n + "%";
+    });
+    imgLoad.on( 'done', function( instance ) {
+      console.log('DONE  - all images have been successfully loaded');
+      load.classList.add("active");
+    });
+    imgLoad.on( 'fail', function( instance ) {
+      console.log('FAIL - all images loaded, at least one is broken');
+    });
 
 }
 loading();
