@@ -380,8 +380,6 @@ function handleVideo(){
             popupvideo.classList.add("active");
             let dataID = videoPlay.dataset.video;
             iframe.setAttribute("src",` https://www.youtube.com/embed/${dataID}?autoplay=1`);
-
-
         })
     });
     btnClose.addEventListener("click", function(){
@@ -397,16 +395,23 @@ document.addEventListener("click", function () {
 });
 function handleQualitySlider(){
   const qualityVideo = document.querySelector('.quality .quality__video');
-  var flktyQuality = new Flickity(qualityVideo, {
-    // options
-    cellAlign: 'left',
-    contain: true,
-    freeScroll: false,
-    wrapAround:false,
-    pageDots: false,
-    prevNextButtons: false,
-    imagesLoaded: true,
-  });
+          widthWindow = window.innerWidth;
+          if(widthWindow < 768){
+          var flktyQuality = new Flickity(qualityVideo, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            freeScroll: false,
+            wrapAround:false,
+            pageDots: false,
+            prevNextButtons: false,
+            imagesLoaded: true,
+          });
+        }
+        else{
+          var flktyQuality = new Flickity(qualityVideo, {});
+          flktyQuality.destroy();
+        }
       window.addEventListener('resize', function(){
         widthWindow = window.innerWidth;
           if(widthWindow < 768){
@@ -491,21 +496,28 @@ function handleNews(){
 handleNews();
 // Handle News
 function handleNewsSlider(){
-  
   const newsList = document.querySelectorAll('.news .news__list');
-    newsList.forEach(list => {
-      var flktyNews = new Flickity(list, {
-        // options
-        cellAlign: 'left',
-        contain: true,
-        freeScroll: false,
-        lazyLoad: 4,
-        wrapAround:false,
-        pageDots: false,
-        prevNextButtons: false,  
-        imagesLoaded: true,
-      });
-    });
+       let widthWindow = window.innerWidth;
+        newsList.forEach(list => {
+          if(widthWindow < 768){
+          var flktyNews = new Flickity(list, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            freeScroll: false,
+            lazyLoad: 4,
+            wrapAround:false,
+            pageDots: false,
+            prevNextButtons: false,  
+            imagesLoaded: true,
+          });
+        }
+        else{
+          var flktyNews = new Flickity( list, {
+          });
+          flktyNews.destroy();
+        }
+        });
       window.addEventListener('resize', function(){
         widthWindow = window.innerWidth;
         newsList.forEach(list => {
@@ -528,6 +540,7 @@ function handleNewsSlider(){
           flktyNews.destroy();
         }
         });
+
       })
       tabs.forEach(tabsList => {
         widthWindow = window.innerWidth;  widthWindow = window.innerWidth;
@@ -593,23 +606,39 @@ function handleAccodion() {
   });
 }
 handleAccodion();
-
 // Gallery Slider
 function handleGallerySlider(){
-      var gallerySlider = document.querySelector(".gallerySlider .gallerySlider__list");
-      var flktyGallerySlider = new Flickity( gallerySlider, {
-        cellAlign: "left",
-        contain: true,
-        draggable: ">1",
-        wrapAround: true,
-        prevNextButtons: false,
-        pageDots: false,
-        pauseAutoPlayOnHover: false,
-        imagesLoaded: true,
-        freeScroll: true,
-        adaptiveHeight: true,
+        widthWindow = window.innerWidth;
+        if(widthWindow < 768){
+          var gallerySlider = document.querySelector(".gallerySlider .gallerySlider__list");
+          var flktyGallerySlider = new Flickity( gallerySlider, {
+            cellAlign: "left",
+            contain: true,
+            draggable: ">1",
+            wrapAround: true,
+            prevNextButtons: false,
+            pageDots: false,
+            pauseAutoPlayOnHover: false,
+            imagesLoaded: true,
+            adaptiveHeight: true,
+            freeScroll: false,
+          });
+        } else{
+          var gallerySlider = document.querySelector(".gallerySlider .gallerySlider__list");
+          var flktyGallerySlider = new Flickity( gallerySlider, {
+            cellAlign: "left",
+            contain: true,
+            draggable: ">1",
+            wrapAround: true,
+            prevNextButtons: false,
+            pageDots: false,
+            pauseAutoPlayOnHover: false,
+            imagesLoaded: true,
+            freeScroll: true,
+            adaptiveHeight: false,
 
-      });
+          });
+        }
       window.addEventListener('resize',function(){
         widthWindow = window.innerWidth;
         if(widthWindow < 768){
@@ -723,7 +752,6 @@ function loading() {
   let progressNumber = document.querySelector(".loader__number span");
   let allImg = document.querySelectorAll("img").length;
   let imgLoad = imagesLoaded("img");
-
   // getting start
     function onAlways( instance ) {
       console.log('all images are loaded');
@@ -746,4 +774,4 @@ function loading() {
     });
 
 }
-loading();
+window.addEventListener("load",loading())
