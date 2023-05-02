@@ -742,6 +742,8 @@ window.addEventListener('load',function(){
   handleNewsSlider();
   handleAccodion();
   handleGallerySlider();
+loading()
+
 })
 function loading() {
   let load = document.querySelector(".loader-mask");
@@ -772,4 +774,3 @@ function loading() {
     });
 
 }
-loading()
