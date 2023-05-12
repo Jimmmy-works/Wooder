@@ -9,6 +9,7 @@
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
 }
+
 html main,
 body main {
   width: 100%;
@@ -39,13 +40,12 @@ body {
   .container-fluid {
     position: relative;
     width: 100%;
-    padding-right: calc(var(--gap) / 2);
-    padding-left: calc(var(--gap) / 2);
+    padding-right: calc(var(--gap-fluid) / 2);
+    padding-left: calc(var(--gap-fluid) / 2);
     margin-right: auto;
     margin-left: auto;
   }
   .container {
-    --gap: 30px;
     position: relative;
     width: 100%;
     padding-right: calc(var(--gap) / 2);
@@ -72,25 +72,22 @@ body {
     margin-top: var(--mg-section);
   }
   @media (min-width: $xxs-min) {
-    .container,
-    .container-fluid {
+    .container {
       max-width: 540px;
     }
   }
   @media (min-width: $xs-min) {
-    .service {
-      .container {
-        max-width: 960px;
-      }
-    }
-    .container,
-    .container-fluid {
+    // .service {
+    //   .container {
+    //     max-width: 960px;
+    //   }
+    // }
+    .container {
       max-width: 720px;
     }
   }
   @media (min-width: $sm-min) {
-    .container,
-    .container-fluid {
+    .container {
       max-width: 960px;
     }
   }

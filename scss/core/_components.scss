@@ -50,7 +50,6 @@
     }
   }
 }
-
 .textbox {
   &__hero {
     width: 100%;
@@ -87,7 +86,7 @@
         margin: 35px auto 0;
         height: 50px;
         max-width: 250px;
-        border: 2px solid var(--cl-white);
+        border: 1px solid var(--cl-white);
         @include mid;
         overflow: hidden;
         background-color: transparent;
@@ -95,19 +94,6 @@
         &:hover {
           border: 2px solid rgba(190, 166, 124, 0.1);
           background-color: rgba(190, 166, 124, 0.5);
-          .text {
-            color: var(--cl-black);
-          }
-          .img {
-            img {
-              &:first-child {
-                @include visible(0);
-              }
-              &:last-child {
-                @include visible(1);
-              }
-            }
-          }
         }
         .img {
           position: relative;
@@ -116,11 +102,6 @@
           img {
             @include transition;
             object-fit: none;
-            &:last-child {
-              @include mid(false);
-              @include transition;
-              @include visible(0);
-            }
           }
         }
         .text {
@@ -169,9 +150,9 @@
         position: absolute;
         transform: translateY(-50%);
         top: 50%;
-        left: -96px;
-        height: 1px;
-        width: 76px;
+        left: -100px;
+        height: 2px;
+        width: 80px;
         background-color: var(--cl-grey);
       }
     }
@@ -211,16 +192,10 @@
       span {
         color: var(--cl-primary);
       }
-      img {
-        transform: translateX(30px);
-        @include visible(0);
-      }
     }
     img {
       @include transition;
       margin-left: 10px;
-      transform: translateX(0px);
-      @include visible(1);
     }
     span {
       @include transition;

@@ -27,9 +27,10 @@ $t: 0.4s;
 :root {
   //=====================================CÁC BIẾN KHÔNG THAY ĐỔI GIÁ TRỊ KHI RESPONSIVE======================================
   --container-max-width: 100%;
-  --container-fluid-width: 1600px;
+  --container-fluid-width: 1920px;
   --container-width: 1010px;
-  --gap: 60px;
+  --gap: 30px;
+  --gap-fluid: 30px;
   --pd-section: 100px;
   --mg-section: 100px;
   --body-width: 2560px;
@@ -97,16 +98,14 @@ $t: 0.4s;
 
     --fz-h2: 3.4rem;
     --lh-h2: 4.6rem;
-    --fz-h3: 1.4rem;
   }
   @media (max-width: $xxs-max) {
     // Mobile Small
     --fz-nav: 1.8rem;
     --lh-nav: 3.2rem;
 
-    --fz-h2: 2.8rem;
+    --fz-h2: 3.2rem;
     --lh-h2: 4.2rem;
-    --fz-h3: 1.2rem;
     --pd-section: 50px;
     --mg-section: 50px;
   }
