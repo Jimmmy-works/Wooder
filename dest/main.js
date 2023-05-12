@@ -87,7 +87,7 @@ function handleMenuNav() {
       event.preventDefault();
       //   // Xử lí  scroll đến Section
       window.scrollTo({
-        top: sectionNav.offsetTop - heightHeader + 1,
+        top: sectionNav.offsetTop - heightHeader + 61,
         behavior: "smooth",
       });
     });
@@ -121,7 +121,7 @@ function handleMenu() {
       event.preventDefault();
       //   // Xử lí  scroll đến Section
       window.scrollTo({
-        top: section.offsetTop - heightHeader + 1,
+        top: section.offsetTop - heightHeader + 81,
         behavior: "smooth",
       });
       //   // Remove va active
@@ -134,8 +134,8 @@ function handleMenu() {
       let posYWindow = window.pageYOffset;
       sections.forEach(function (section, sectionIndex) {
         if (
-          posYWindow > section.offsetTop - heightHeader &&
-          posYWindow < section.offsetTop + section.offsetHeight 
+          posYWindow > section.offsetTop - heightHeader  &&
+          posYWindow < section.offsetTop + section.offsetHeight  
       
         ) {
           removeActiveMenu();
@@ -147,6 +147,7 @@ function handleMenu() {
       });
     });
   });
+  
 }
 
 // handle language
@@ -696,7 +697,6 @@ function loading() {
   let imgLoad = imagesLoaded("img");
   // getting start
     function onAlways( instance ) {
-      console.log('all images are loaded');
     }
     // bind with .on()
     imgLoad.on( 'always', onAlways );
@@ -708,12 +708,7 @@ function loading() {
         progressBar.style.width = n + "%";
     });
     imgLoad.on( 'done', function( instance ) {
-      console.log('DONE  - all images have been successfully loaded');
       load.classList.add("active");
     });
-    imgLoad.on( 'fail', function( instance ) {
-      console.log('FAIL - all images loaded, at least one is broken');
-    });
-
 }
 loading()
