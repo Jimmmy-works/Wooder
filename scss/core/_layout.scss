@@ -8,6 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
+  @include custom-scrollbar();
 }
 
 html main,
@@ -25,8 +26,12 @@ body {
   width: 100%;
   max-width: var(--container-max-width);
   margin: auto;
-  // overflow: hidden;
-
+  overflow: hidden;
+  height: 100vh;
+  &.--disable-scrollbar {
+    overflow: initial;
+    height: auto;
+  }
   @include text(
     pr,
     var(--fz-h3),
@@ -71,6 +76,7 @@ body {
   .mgT {
     margin-top: var(--mg-section);
   }
+
   @media (min-width: $xxs-min) {
     .container {
       max-width: 540px;
