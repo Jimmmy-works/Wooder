@@ -20,13 +20,12 @@ body main {
 html {
   font-size: 62.5%; // => 10px = 1rem
   scroll-behavior: smooth;
-  // overflow: hidden;
 }
 body {
   width: 100%;
   max-width: var(--container-max-width);
   margin: auto;
-  overflow: hidden;
+  // overflow: hidden;
   height: 100vh;
   &.--disable-scrollbar {
     overflow: unset !important;
